@@ -1,25 +1,18 @@
-import React from 'react';
-import { BrowserRouter  as Router, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Home from './pages/Home/Home';
-import AddEmployee from './pages/AddEmployee/AddEmployee';
-import DeleteEmployee from './pages/Delete/DeleteEmployee';
-import EditEmployee from './pages/EditEmployee/EditEmployee';
-import DeleteConfirmation from './pages/Delete/DeleteConfirmation';
-import SeeMore from './pages/SeeMore/SeeMore';
+import Home from "./pages/Home/Home";
+import AddEmployee from "./pages/AddEmployee/AddEmployee";
+import EditEmployee from "./pages/EditEmployee/EditEmployee";
 
 function App() {
   return (
     <div className="App">
-      <Router> 
+      <Router>
         <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/AddEmployee" component={AddEmployee}/>
-          <Route path="/EditEmployee/:id" component={EditEmployee}/>
-          <Route path="/DeleteEmployee" component={DeleteEmployee}/>
-          <Route path="/DeleteConfirmation" component={DeleteConfirmation}/>
-          <Route path="/SeeMore" component={SeeMore}/>
-
+          <Route exact path="/" component={Home} />
+          <Route path="/AddEmployee" component={AddEmployee} />
+          <Route path="/EditEmployee" component={EditEmployee} />
         </Switch>
       </Router>
     </div>

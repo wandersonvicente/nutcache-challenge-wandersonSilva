@@ -1,39 +1,43 @@
 import React from "react";
 // import { Link } from "react-router-dom";
-import axios from 'axios';
-import "../AddEmployee/AddEmployee.css";
+import api from "../../api";
+// import "../AddEmployee/AddEmployee.css";
 
 import Header from "../../components/Header/Header";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-
-function AddEmployee(){
-
+function AddEmployee() {
   let history = useHistory();
 
-  const { register, handleSubmit, formState: { erros} } = useForm();
-  
-  const addEmployee = data => axios.post("https://crudcrud.com/api/249ddef60ecd4150aac87f02d2f1136b/nutemployee/create", data).then(() => {
-    console.log("Employee Added.")
-    history.push("/")
-  }).catch(() =>{
-    console.log("ERROR")
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { erros },
+  } = useForm();
 
+  const addEmployee = (data) =>
+    api
+      .post("/nutemployee", data)
+      .then(() => {
+        console.log("Employee Added.");
+        history.push("/");
+      })
+      .catch(() => {
+        console.log("ERROR");
+      });
 
   return (
     <div>
       <Header />
 
-      <main> 
+      <main>
         <div className="card-add-employee">
-          <h1> Edit Employee </h1>
+          <h1> Add Employee </h1>
           <div className="line-post"></div>
 
           <div className="card-body-add">
             <form onSubmit={handleSubmit(addEmployee)}>
-
               <div className="fildes">
                 <label>Name</label>
                 <input type="text" name="name" {...register("name")}></input>
@@ -41,7 +45,12 @@ function AddEmployee(){
 
               <div className="fildes">
                 <label>Birth Date</label>
-                <input type="date" name="birth-date" {...register("birth_date")} required></input>
+                <input
+                  type="date"
+                  name="birth-date"
+                  {...register("birth_date")}
+                  required
+                ></input>
               </div>
 
               <div className="fildes">
@@ -49,47 +58,69 @@ function AddEmployee(){
                 <select name="gender" {...register("gender")} required>
                   <option value="man-cis">Man Cis</option>
                   <option value="man-trans">Man Trans</option>
-                  <option value="woman-cis" defaultValue> Woman Cis</option>
-                  <option value="woman-trans" defaultValue> Woman Trans</option>
+                  <option value="woman-cis" defaultValue>
+                    {" "}
+                    Woman Cis
+                  </option>
+                  <option value="woman-trans" defaultValue>
+                    {" "}
+                    Woman Trans
+                  </option>
                   <option value="no-binary">No Binary</option>
                 </select>
               </div>
 
               <div className="fildes">
                 <label>E-mail</label>
-                <input type="email" name="email" {...register("email")} required></input>
+                <input
+                  type="email"
+                  name="email"
+                  {...register("email")}
+                  required
+                ></input>
               </div>
 
               <div className="fildes">
                 <label>CPF</label>
-                <input type="text" name="cpf" {...register("cpf")} required></input>
+                <input
+                  type="text"
+                  name="cpf"
+                  {...register("cpf")}
+                  required
+                ></input>
               </div>
 
               <div className="fildes">
                 <label>Start Date</label>
-                <input type="date" name="start-date" {...register("start_date")} required></input>
+                <input
+                  type="date"
+                  name="start-date"
+                  {...register("start_date")}
+                  required
+                ></input>
               </div>
 
               <div className="fildes">
                 <label>Team</label>
                 <select name="team" {...register("team")} required>
                   <option value="data-mobile">Data Mobile</option>
-                  <option value="frontend" defaultValue> Frontend</option>
-                  <option value="valor3">Backend</option>
+                  <option value="frontend" defaultValue>
+                    {" "}
+                    Frontend
+                  </option>
+                  <option value="backend">Backend</option>
                 </select>
               </div>
 
               <div className="btn-send-employee">
                 <button type="Submit">ADD</button>
               </div>
-
             </form>
           </div>
-
         </div>
       </main>
     </div>
-  )
+  );
 }
 
 export default AddEmployee;
